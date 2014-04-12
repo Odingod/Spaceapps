@@ -1,29 +1,15 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="utf-8" />
-<title>Demo</title>
-</head>
-<body>
-<a href="http://jquery.com/">jQuery</a>
-<script src="jquery-2.1.0.js"></script>
-<script>
+    <head>
+        <meta charset="utf-8" />
+        <title>Demo</title>
+    </head>
+    <body>
+        <a href="http://jquery.com/">jQuery</a>
+        <form action="" class="test-form"></form>
 
-$.ajax({
-    url: '/api',
-    type: 'POST',
-    data: '{"request": {"Action":"FormTemplateRequest","Category":"1"}}',
-    contentType: 'application/json',
-    success: function (result) {
-        console.log(result);
-    },
-    error: function (jqXHR, tranStatus, errorThrown) {
-        console.log({
-            'Status' :jqXHR.status + ' ' + jqXHR.statusText,
-            'Response': jqXHR.responseText
-        });
-    }
-});
-</script>
-</body>
+        <script src="jquery-2.1.0.js"></script>
+        <script src="js/formrenderer.js"></script>
+        <script src="js/main.js"></script>
+    </body>
 </html>
