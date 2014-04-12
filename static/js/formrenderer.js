@@ -6,7 +6,7 @@ var Field = function(fieldData){
 	this.fieldData = fieldData;
 	
 	//Assume not
-	this.mandatory = (this.fieldData['field_mandatory']) ?
+	this.mandatory = (this.fieldData && this.fieldData['field_mandatory']) ?
 		(parseInt(this.fieldData['field_mandatory'],10) && true) : false;
 };
 Field.prototype.getData = function(){
@@ -138,7 +138,7 @@ $.fn.formRenderer = function(conf){
 
 		renderedFields.push(field.render());
 	}
--	
+
 	renderedFields.push('<input type="button" id="nappula" value="Lähetä" onclick="myFunction()">')
 	console.log($e);
 
