@@ -8,23 +8,20 @@
 <a href="http://jquery.com/">jQuery</a>
 <script src="jquery-2.1.0.js"></script>
 <script>
-var data = '<Request><Action>FormTemplateRequest</Action><Category>1</Category></Request>'
-    
-$.support.cors = true;
+
 $.ajax({
     url: '/api',
     type: 'POST',
-    //crossDomain: true,
-    data: data,
-    dataType: 'text/xml',
+    data: '{"request": {"Action":"FormTemplateRequest","Category":"1"}}',
+    contentType: 'application/json',
     success: function (result) {
-        alert(result);
+        console.log(result);
     },
     error: function (jqXHR, tranStatus, errorThrown) {
-        alert(
-            'Status: ' + jqXHR.status + ' ' + jqXHR.statusText + '. ' +
-            'Response: ' + jqXHR.responseText
-        );
+        console.log({
+            'Status' :jqXHR.status + ' ' + jqXHR.statusText,
+            'Response': jqXHR.responseText
+        });
     }
 });
 </script>
