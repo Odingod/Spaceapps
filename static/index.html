@@ -5,11 +5,16 @@
         <title>Demo</title>
     </head>
     <body>
-        <a href="http://jquery.com/">jQuery</a>
         <form action="" class="test-form"></form>
 
         <script src="jquery-2.1.0.js"></script>
         <script src="js/formrenderer.js"></script>
         <script src="js/main.js"></script>
+		
+		<script>
+		function GetLocation(location) {
+		$("#observation_coordinates").attr('value', "lat=" + location.coords.latitude + ", lon=" + location.coords.longitude);
+	}
+	</script>	
     </body>
 </html>

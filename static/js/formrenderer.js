@@ -27,7 +27,7 @@ DateField.prototype = new Field();
 DateField.prototype.render = function(){
 	var d = this.fieldData;
 	return [
-		'<div>DATE FIELD: ' + d['field_label'] + '</div>'
+		'<div>' + d['field_label']+ '<input type="date" name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\"/></div>'
 	].join('');
 };
 
@@ -39,7 +39,7 @@ TimeField.prototype = new Field();
 TimeField.prototype.render = function(){
 	var d = this.fieldData;
 	return [
-		'<div>TIME FIELD: ' + d['field_label'] + '</div>'
+		'<div>' + d['field_label']+ '<input type="time" name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\"/></div>'
 	].join('');
 };
 
@@ -50,8 +50,9 @@ var CoordinateField = function(fieldData){
 CoordinateField.prototype = new Field();
 CoordinateField.prototype.render = function(){
 	var d = this.fieldData;
+	navigator.geolocation.getCurrentPosition(GetLocation);
 	return [
-		'<div>COORDINATE FIELD: ' + d['field_label'] + '</div>'
+		'<div>' + d['field_label']+ '<input name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div>'
 	].join('');
 };
 
@@ -62,8 +63,8 @@ var TextField = function(fieldData){
 TextField.prototype = new Field();
 TextField.prototype.render = function(){
 	var d = this.fieldData;
-	return [
-		'<div>TEXT FIELD: ' + d['field_label'] + '</div>'
+	return [	
+		'<div>' + d['field_label']+ '<input name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div>'
 	].join('');
 };
 
@@ -75,7 +76,7 @@ CheckBoxField.prototype = new Field();
 CheckBoxField.prototype.render = function(){
 	var d = this.fieldData;
 	return [
-		'<div>CHECKBOX FIELD: ' + d['field_label'] + '</div>'
+		'<div>' + d['field_label']+ '<input type="checkbox" name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\"/></div>'
 	].join('');
 };
 
@@ -86,8 +87,15 @@ var SelectField = function(fieldData){
 SelectField.prototype = new Field();
 SelectField.prototype.render = function(){
 	var d = this.fieldData;
+	
+	var options;
+	for (var key in d['values']){
+		for (var key2 in d['values'][key]){
+			options = options + '<option value=\"' + d['values'][key][key2]['value_id'] + '\">' + d['values'][key][key2]['value_name'] + '</option>';
+	}
+	}
 	return [
-		'<div>SELECT FIELD: ' + d['field_label'] + '</div>'
+		'<div>' + d['field_label']+ '<select>' + options + '</select></div>'
 	].join('');
 };
 
