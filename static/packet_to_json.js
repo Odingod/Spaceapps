@@ -6,7 +6,7 @@
 		var oField = {}
 		oField["field_id"] = this.name || '';
 		oField["field_value"] = this.value || '';
-		
+		alert("Jees!");
 		if (o["field"] !== undefined){
 			o["field"].push(oField);
 		} else {
