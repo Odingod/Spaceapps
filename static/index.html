@@ -41,6 +41,39 @@
 	    }
 	});
 	}
+	
+	function myFunction2(res){
+		var imgData = 0;
+		var request = {};
+		request.action="ObservationAddImageRequest";
+		var image = {};
+		image.encoding="Base64";
+		image.image_data=imgData;
+		image.image_name="jotain";
+		image.mimetype="image/jpeg";
+		image.observation_id=res.response.observation_id;
+		image.observation_modification_key=res.response.observation_modification_key;
+		request.image=image;
+		
+		data = {};
+		data.request = request;
+		$.ajax({
+	    url: '/api',
+	    type: 'POST',
+	    data: data,
+	    contentType: 'application/json',
+	    success: function (result) {
+	    	console.log(JSON.stringify(result));
+	    },
+	    error: function (jqXHR, tranStatus, errorThrown) {
+	        console.log({
+	            'Status' :jqXHR.status + ' ' + jqXHR.statusText,
+	            'Response': jqXHR.responseText
+	        });
+	    }
+	});
+		
+    });
 		</script>	
     </body>
 </html>
