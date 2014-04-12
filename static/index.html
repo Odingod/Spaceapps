@@ -3,13 +3,54 @@
     <head>
         <meta charset="utf-8" />
         <title>Demo</title>
-    </head>
+		
+		<!-- Bootstrap -->
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link href="layout.css" rel="stylesheet">
+		
+	</head>
     <body>
-        <a href="http://jquery.com/">jQuery</a>
-        <form action="" class="test-form"></form>
-
-        <script src="jquery-2.1.0.js"></script>
+		<form method="GET" enctype="multipart/form-data" class="Havainto">
+			<input name='file' type="file" accept="image/*" /> <br><!-- cute but only works in some browsers-->
+			<img width='300'><br>	
+		<input type="button" onclick="myFunction()" id="sendi" value="Send"/><input class="reset" type="button" value="Reset" />
+		</form>
+        <form method="GET" action="" class="test-form" enctype="multipart/form-data"></form>
+		
+		<script src="jquery-2.1.0.js"></script>
         <script src="js/formrenderer.js"></script>
+		
         <script src="js/main.js"></script>
+		<script src="img_uploader.js"></script>
+
+		
+		<script>
+		function GetLocation(location) {
+		$("#observation_coordinates").attr('value', "lat=" + location.coords.latitude + ", lon=" + location.coords.longitude);
+		}
+	
+	function myFunction(){
+		console.log('piip');
+		var formData = $("#test-form").serializeObject();
+		console.log(JSON.stringify(formData));
+			
+		$.ajax({
+	    url: '/api',
+	    type: 'POST',
+	    data: formData,
+	    contentType: 'application/json',
+	    success: function (result) {
+	    	console.log(JSON.stringify(result));
+	    },
+	    error: function (jqXHR, tranStatus, errorThrown) {
+	        console.log({
+	            'Status' :jqXHR.status + ' ' + jqXHR.statusText,
+	            'Response': jqXHR.responseText
+	        });
+	    }
+	});
+	}
+		</script>	
     </body>
 </html>

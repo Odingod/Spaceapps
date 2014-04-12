@@ -5,7 +5,7 @@ $(document).ready(function(){
 	$.ajax({
 	    url: '/api',
 	    type: 'POST',
-	    data: '{"request": {"Action":"FormTemplateRequest","Category":"1"}}',
+	    data: '{"request": {"Action":"FormTemplateRequest","Category":"6"}}',
 	    contentType: 'application/json',
 	    success: function (result) {
 	    	$('.test-form').formRenderer({
