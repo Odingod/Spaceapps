@@ -5,19 +5,25 @@
         <title>Demo</title>
     </head>
     <body>
+		
+        <form action="" class="test-form"></form>
 		<script src="jquery-2.1.0.js"></script>
         <script src="js/formrenderer.js"></script>
 		
         <script src="js/main.js"></script>
-		<script src="js/packet_to_json.js></script>
-        <form action="" class="test-form"><button type="button" onclick="myFunction"> Asiaa</button></form>
-
+		
 		
 		
 		<script>
 		function GetLocation(location) {
 		$("#observation_coordinates").attr('value', "lat=" + location.coords.latitude + ", lon=" + location.coords.longitude);
 		}
+	
+	function myFunction(){
+		console.log('piip');
+		var formData = $("#test-form").serializeObject();
+		console.log(JSON.stringify(formData));
+	}
 		</script>	
     </body>
 </html>

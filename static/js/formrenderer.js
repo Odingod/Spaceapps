@@ -31,7 +31,7 @@ DateField.prototype.render = function(){
 	var datestr = tD.getFullYear() + "-" + (tD.getMonth()+ 1) + "-" +  tD.getDate();
 	
 	return [
-		'<div>' + d['field_label']+ '<input value="' + datestr + '" name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<input value="' + datestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
 	].join('');
 };
 
@@ -47,7 +47,7 @@ TimeField.prototype.render = function(){
 	var timestr = tD.getHours() + ":" + (tD.getMinutes()+ 1) + ":" +  tD.getSeconds();
 	
 	return [
-		'<div>' + d['field_label']+ '<input type="time" value="' + timestr + '" name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<input type="time" value="' + timestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
 	].join('');
 };
 
@@ -60,7 +60,7 @@ CoordinateField.prototype.render = function(){
 	var d = this.fieldData;
 	navigator.geolocation.getCurrentPosition(GetLocation);
 	return [
-		'<div>' + d['field_label']+ '<input name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<input name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div>'
 	].join('');
 };
 
@@ -72,7 +72,7 @@ TextField.prototype = new Field();
 TextField.prototype.render = function(){
 	var d = this.fieldData;
 	return [	
-		'<div>' + d['field_label']+ '<input name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<input name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div>'
 	].join('');
 };
 
@@ -84,7 +84,7 @@ CheckBoxField.prototype = new Field();
 CheckBoxField.prototype.render = function(){
 	var d = this.fieldData;
 	return [
-		'<div>' + d['field_label']+ '<input type="checkbox" name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<input type="checkbox" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
 	].join('');
 };
 
@@ -103,7 +103,7 @@ SelectField.prototype.render = function(){
 	}
 	}
 	return [
-		'<div>' + d['field_label']+ '<select>' + options + '</select></div>'
+		'<div>' + d['field_label']+ '<select name=\"' + d['field_id'] + '">' + options + '</select></div>'
 	].join('');
 };
 
@@ -146,6 +146,31 @@ $.fn.formRenderer = function(conf){
 
 	$e.html(renderedFields.join(''));
 
+		$.fn.serializeObject = function()
+{
+	console.log('paap');
+	var request = {};
+	request.action="ObservationRequest";
+    var observation = [];
+    var a = $(":input").serializeArray();
+	console.log(this);
+	console.log(a);
+    $.each(a, function() {	
+		var item = {}
+		var item2 = {}
+		item2.field_id = this.name || '';
+		item2.field_value = this.value || '';
+		item["field"]=item2,
+		observation.push(item)
+    });
+    request.observation = observation;
+	var o = {};
+	o.request =request;
+	console.log(JSON.stringify(o));
+	
+	return o;
+};
+	
 
 };
 
