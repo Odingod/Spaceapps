@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Demo</title>
+<!-- Bootstrap -->
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+	<link href="layout.css" rel="stylesheet">
+
+</head>
+<script src="jquery-2.1.0.js"></script>
+<script src="jquery.exif.js"></script>
+<script src="exif.js"></script>
+<script src="form_parser.js"></script>
+<script src="img_uploader.js"></script>
+<script src="packet_to_json.js"></script>
+
+<body>
+<!--<img src="WIN_20140306_102409.JPG" exif="true" id="testikuva" />-->
+
+	<form method="GET" enctype="multipart/form-data" class="Havainto">
+		<input name='file' type="file" accept="image/*" /> <br><!-- cute but only works in some browsers-->
+		<img width='300'><br>
+		
+<input type="button" onclick="myFunction()" id="sendi" value="Send"/><input class="reset" type="button" value="Reset" />
+	</form>
+</body>
+</html>
