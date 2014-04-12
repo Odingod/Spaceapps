@@ -29,7 +29,7 @@
 
 	function printField(field){
 		document.write(field.field_label);
-		document.write("<input name=\'" + field.field_label + "\' type=\'" + field.field_type + "\' id=\'" + field.field_id + "\'><br>")
+		document.write("<input name=\'field[" + field.field_id + "]\' type=\'" + field.field_type + "\' id=\'" + field.field_id + "\'><br>")
 	}
 	
 	function GetLocation(location) {
@@ -94,12 +94,14 @@
     });
     return o;
 };
-	var formData = $("form.Havainto").serializeObject();
-	console.log(formData);
 	
+	function myFunction(){
+		var formData = $("form.Havainto").serializeObject();
+		console.log(JSON.stringify(formData));
+	}
 </script>
 	
-<input type="submit" id="sendi" value="Send"/><input class="reset" type="button" value="Reset" />
+<input type="button" onclick="myFunction()" id="sendi" value="Send"/><input class="reset" type="button" value="Reset" />
 	</form>
 </body>
 </html>
