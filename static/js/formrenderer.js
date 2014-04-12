@@ -123,6 +123,8 @@ $.fn.formRenderer = function(conf){
 		fieldData   = (observation.field && observation.field.length) ?
 			observation.field : [];
 
+	
+	var renderedFields = [];
 
 
 	console.log(conf.result.category);
