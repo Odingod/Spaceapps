@@ -4,14 +4,13 @@
 
 var Field = function(fieldData){
 	this.fieldData = fieldData;
+	
+	//Assume not
+	this.mandatory = (this.fieldData['field_mandatory']) ?
+		(parseInt(this.fieldData['field_mandatory'],10) && true) : false;
 };
 Field.prototype.getData = function(){
 	return this.fieldData;
-};
-Field.prototype.isMandatory = function(){
-	//Assume not
-	return (this.fieldData['field_mandatory']) ?
-		(parseInt(this.fieldData['field_mandatory'],10)) && true : false;
 };
 
 //Should not get called...
