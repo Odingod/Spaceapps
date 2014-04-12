@@ -4,14 +4,13 @@
 
 var Field = function(fieldData){
 	this.fieldData = fieldData;
+	
+	//Assume not
+	this.mandatory = (this.fieldData && this.fieldData['field_mandatory']) ?
+		(parseInt(this.fieldData['field_mandatory'],10) && true) : false;
 };
 Field.prototype.getData = function(){
 	return this.fieldData;
-};
-Field.prototype.isMandatory = function(){
-	//Assume not
-	return (this.fieldData['field_mandatory']) ?
-		(parseInt(this.fieldData['field_mandatory'],10)) && true : false;
 };
 
 //Should not get called...
@@ -31,7 +30,7 @@ DateField.prototype.render = function(){
 	var datestr = tD.getFullYear() + "-" + (tD.getMonth()+ 1) + "-" +  tD.getDate();
 	
 	return [
-		'<div>' + d['field_label']+ '<input value="' + datestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
+		'<div class="form-group"><label for="' + d['field_id'] + '" class="col-lg-2 control-label">' + d['field_label']+ '</label><div class="col-lg-10"><input value="' + datestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div></div>'
 	].join('');
 };
 
@@ -46,7 +45,7 @@ TimeField.prototype.render = function(){
 	var tD = new Date();
 	var timestr = tD.getHours() + ":" + (tD.getMinutes()+ 1) + ":" +  tD.getSeconds();
 	return [
-		'<div>' + d['field_label']+ '<input value="' + timestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
+		'<div class="form-group"><label for="' + d['field_id'] + '" class="col-lg-2 control-label">' + d['field_label']+ '</label><div class="col-lg-10"><input value="' + timestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div></div><br>'
 	].join('');
 };
 
@@ -59,7 +58,7 @@ CoordinateField.prototype.render = function(){
 	var d = this.fieldData;
 	navigator.geolocation.getCurrentPosition(GetLocation);
 	return [
-		'<div>' + d['field_label']+ '<input name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div>'
+		'<div class="form-group"><label for="' + d['field_id'] + '" class="col-lg-2 control-label">' + d['field_label']+ '</label><div class="col-lg-10"><input name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div></div><br>'
 	].join('');
 };
 
@@ -71,7 +70,7 @@ TextField.prototype = new Field();
 TextField.prototype.render = function(){
 	var d = this.fieldData;
 	return [	
-		'<div>' + d['field_label']+ '<input name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div>'
+		'<div class="form-group"><label for="' + d['field_id'] + '" class="col-lg-2 control-label">' + d['field_label']+ '</label><div class="col-lg-10"><input name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div></div><br>'
 	].join('');
 };
 
@@ -83,7 +82,7 @@ CheckBoxField.prototype = new Field();
 CheckBoxField.prototype.render = function(){
 	var d = this.fieldData;
 	return [
-		'<div>' + d['field_label']+ '<input type="checkbox" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
+		'<div class="form-group"><label for="' + d['field_id'] + '" class="col-lg-2 control-label">' + d['field_label']+ '</label><div class="col-lg-10"><input type="checkbox" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div></div><br>'
 	].join('');
 };
 
@@ -102,7 +101,7 @@ SelectField.prototype.render = function(){
 	}
 	}
 	return [
-		'<div>' + d['field_label']+ '<select name=\"' + d['field_id'] + '">' + options + '</select></div>'
+		'<div class="form-group"><label for="' + d['field_id'] + '" class="col-lg-2 control-label">' + d['field_label']+ '</label><div class="col-lg-10"><select name=\"' + d['field_id'] + '">' + options + '</select></div></div><br>'
 	].join('');
 };
 
@@ -123,8 +122,8 @@ $.fn.formRenderer = function(conf){
 		observation = conf.result.observation,
 		fieldData   = (observation.field && observation.field.length) ?
 			observation.field : [];
-	
-	var renderedFields = ['<input name=\'file\' type=\"file\" accept="image/*\" /> <br><img width=\'300\'><br>'];
+
+
 
 	console.log(conf.result.category);
 	for (var i = 0; i < fieldData.length; i++) {
@@ -136,12 +135,11 @@ $.fn.formRenderer = function(conf){
 		var field = new Constructor(datum);
 
 		console.log(field);
-
+		
 		renderedFields.push(field.render());
+		
 	}
-	
-	
--	
+
 	renderedFields.push('<input type="button" id="nappula" value="Lähetä" onclick="myFunction()">')
 	console.log($e);
 
