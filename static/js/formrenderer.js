@@ -31,7 +31,7 @@ DateField.prototype.render = function(){
 	var datestr = tD.getFullYear() + "-" + (tD.getMonth()+ 1) + "-" +  tD.getDate();
 	
 	return [
-		'<div>' + d['field_label']+ '<input value="' + datestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<div></div><input value="' + datestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
 	].join('');
 };
 
@@ -46,7 +46,7 @@ TimeField.prototype.render = function(){
 	var tD = new Date();
 	var timestr = tD.getHours() + ":" + (tD.getMinutes()+ 1) + ":" +  tD.getSeconds();
 	return [
-		'<div>' + d['field_label']+ '<input value="' + timestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<div></div><input value="' + timestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
 	].join('');
 };
 
@@ -59,7 +59,7 @@ CoordinateField.prototype.render = function(){
 	var d = this.fieldData;
 	navigator.geolocation.getCurrentPosition(GetLocation);
 	return [
-		'<div>' + d['field_label']+ '<input name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<div></div><input name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div>'
 	].join('');
 };
 
@@ -71,7 +71,7 @@ TextField.prototype = new Field();
 TextField.prototype.render = function(){
 	var d = this.fieldData;
 	return [	
-		'<div>' + d['field_label']+ '<input name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<div></div><input name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\" maxlength=\"' + d['field_max_length'] + '\"/></div>'
 	].join('');
 };
 
@@ -83,7 +83,7 @@ CheckBoxField.prototype = new Field();
 CheckBoxField.prototype.render = function(){
 	var d = this.fieldData;
 	return [
-		'<div>' + d['field_label']+ '<input type="checkbox" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<div></div><input type="checkbox" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
 	].join('');
 };
 
