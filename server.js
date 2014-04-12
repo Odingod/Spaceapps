@@ -9,7 +9,7 @@ var proxy = httpProxy.createProxyServer();
 app.use(function(req, res, next) {
   if(req.url === '/api') {
     proxy.web(req, res, {
-      target:'https://www.taivaanvahti.fi/api',
+      target:'https://www.taivaanvahti.fi:8443',
       secure: true
     });
   } else {
