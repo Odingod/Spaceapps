@@ -25,43 +25,29 @@ var json = '{"observation":{"field":[{"field_label":"P\u00e4iv\u00e4m\u00e4\u00e
 var obj = jQuery.parseJSON(json);
 
 for(var key in obj.observation.field){
-	if (obj.observation.field[key].field_mandatory == "1") {
+	if (obj.observation.field[key].field_mandatory == "1" || obj.observation.field[key].field_label == "Koordinaatit") {
 	document.write(obj.observation.field[key].field_label);
 	  document.write("<input type='");
 	document.write(obj.observation.field[key].field_type);
-  document.write("'>");
+   document.write("\' value=\'");
+   
+   navigator.geolocation.getCurrentPosition(GetLocation);
+   function GetLocation(location) {
+   document.write("lat=" + location.coords.latitude + ", lon=" + location.coords.longitude)
+   }
+   document.write("'>");
 	
 	document.write('<br>');
 	}
 }
 
-</script>
+function GetLocation(location) {
+    alert(location.coords.latitude);
+    alert(location.coords.longitude);
+    alert(location.coords.accuracy);
+}
 
-	<script>
-	$(function(){
-		$("[type=file]").change(function(){
-			var file = this.files[0],
-				reader = new FileReader(),
-				img = $(this).siblings('img')
-			reader.onload = function (e) {
-				img.attr('src', e.target.result);
-				img.attr('exif', 'True');
-				img.attr('id', 'img1');
-				
-				
-			}
-			reader.readAsDataURL(file);
-		})
-	})
-	
-	</script>
-	
-	<script>
-		var oImg = document.getElementById("testikuva");
-		alert(oImg);
-		
-		//$("#testikuva").attr('alt',$(this).exif("Date"));
-	</script>
+</script>
 				
 <input type="submit" value="Send"/><input class="reset" type="button" value="Reset" />
 	</form>
