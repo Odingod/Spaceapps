@@ -1,5 +1,6 @@
 	$(function(){
 		$("[type=file]").change(function(){
+			alert('jee');
 			var file = this.files[0],
 				reader = new FileReader(),
 				img = $(this).siblings('img')

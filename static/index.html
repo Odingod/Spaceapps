@@ -6,35 +6,14 @@
     </head>
     <body>
 		
-        <form action="" class="test-form"></form>
+        <form action="" class="test-form" enctype="multipart/form-data"></form>
+		
 		<script src="jquery-2.1.0.js"></script>
         <script src="js/formrenderer.js"></script>
 		
         <script src="js/main.js"></script>
-		
-		<script>
-			function showLocation(event) {
-			var geocoder = new google.maps.Geocoder();
-			geocoder.geocode( { 'location': event.latLng}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					var str = '';
-					var i = 0, len = results.length, loop = true;
-					while (i < len && loop) {
-						for (var j = 0, len2 = results[i].address_components.length; j < len2; j++) {
-							if (results[i].address_components[j].types[0] == 'administrative_area_level_3') {
-								str = results[i].address_components[j].long_name;
-								loop = false;
-								break;
-							}
-							else
-								str = '';
-						}
-						i++;
-					}
-					document.forms["test-form"].elements["observation_location"].value=str;
-				}
-			});
-		</script>
+		<script src="img_uploader.js"></script>
+
 		
 		<script>
 		function GetLocation(location) {

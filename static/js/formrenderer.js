@@ -45,9 +45,8 @@ TimeField.prototype.render = function(){
 	
 	var tD = new Date();
 	var timestr = tD.getHours() + ":" + (tD.getMinutes()+ 1) + ":" +  tD.getSeconds();
-	
 	return [
-		'<div>' + d['field_label']+ '<input type="time" value="' + timestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<input value="' + timestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div>'
 	].join('');
 };
 
@@ -125,7 +124,7 @@ $.fn.formRenderer = function(conf){
 		fieldData   = (observation.field && observation.field.length) ?
 			observation.field : [];
 
-	var renderedFields = [];
+	var renderedFields = ['<input name=\'file\' type=\"file\" accept="image/*\" /> <br><img width=\'300\'><br>'];
 
 
 	for (var i = 0; i < fieldData.length; i++) {
