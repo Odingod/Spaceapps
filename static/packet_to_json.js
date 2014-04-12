@@ -1,19 +1,22 @@
 	$.fn.serializeObject = function()
 {
-    var o = {};
+	var request = {};
+	request.action="ObservationRequest";
+    var observation = [];
     var a = this.serializeArray();
-    $.each(a, function() {		
-		var oField = {}
-		oField["field_id"] = this.name || '';
-		oField["field_value"] = this.value || '';
+    $.each(a, function() {	
+		var item = {}
+		item2 = {}
+		item2.field_id = this.name || '';
+		item2.field_value = this.value || '';
 		alert("Jees!");
-		if (o["field"] !== undefined){
-			o["field"].push(oField);
-		} else {
-			o["field"] = oField;
-		}
+		item["field"]=item2,
+		observation.push(item)
     });
-    return o;
+    request.observation = observation;
+	var o = {};
+	o.request =request;
+	console.log(JSON.stringify(o));
 };
 	
 	function myFunction(){
