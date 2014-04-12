@@ -163,6 +163,7 @@ $.fn.formRenderer = function(conf){
 		observation.push(item)
     });
     request.observation = observation;
+	request.source = "SpaceApps2014";
 	var o = {};
 	o.request =request;
 	console.log(JSON.stringify(o));

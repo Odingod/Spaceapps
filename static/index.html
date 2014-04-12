@@ -34,6 +34,22 @@
 		console.log('piip');
 		var formData = $("#test-form").serializeObject();
 		console.log(JSON.stringify(formData));
+			
+		$.ajax({
+	    url: '/api',
+	    type: 'POST',
+	    data: formData,
+	    contentType: 'application/json',
+	    success: function (result) {
+	    	console.log(JSON.stringify(result));
+	    },
+	    error: function (jqXHR, tranStatus, errorThrown) {
+	        console.log({
+	            'Status' :jqXHR.status + ' ' + jqXHR.statusText,
+	            'Response': jqXHR.responseText
+	        });
+	    }
+	});
 	}
 		</script>	
     </body>
