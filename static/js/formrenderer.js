@@ -26,8 +26,12 @@ var DateField = function(fieldData){
 DateField.prototype = new Field();
 DateField.prototype.render = function(){
 	var d = this.fieldData;
+	
+	var tD = new Date();
+	var datestr = tD.getFullYear() + "-" + (tD.getMonth()+ 1) + "-" +  tD.getDate();
+	
 	return [
-		'<div>' + d['field_label']+ '<input type="date" name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<input value="' + datestr + '" name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\"/></div>'
 	].join('');
 };
 
@@ -38,8 +42,12 @@ var TimeField = function(fieldData){
 TimeField.prototype = new Field();
 TimeField.prototype.render = function(){
 	var d = this.fieldData;
+	
+	var tD = new Date();
+	var timestr = tD.getHours() + ":" + (tD.getMinutes()+ 1) + ":" +  tD.getSeconds();
+	
 	return [
-		'<div>' + d['field_label']+ '<input type="time" name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\"/></div>'
+		'<div>' + d['field_label']+ '<input type="time" value="' + timestr + '" name=\"' + d['field_label'] + '\" id=\"' + d['field_id'] + '\"/></div>'
 	].join('');
 };
 
@@ -132,7 +140,8 @@ $.fn.formRenderer = function(conf){
 
 		renderedFields.push(field.render());
 	}
-
+-	
+	renderedFields.push('<input type="button" id="nappula" value="Lähetä" onclick="myFunction()">')
 	console.log($e);
 
 	$e.html(renderedFields.join(''));
