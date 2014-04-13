@@ -27,35 +27,33 @@ $(document).ready(function(){
 	}
 
 	function setCategory(){
-		var catID = $('.category-selector').val();
+		var catName = $('.category-selector').val();
 
 		for (var i = 0; i < templates.length; i++) {
 			var t = templates[i];
-			if(t.category.sorting == catID){
+
+			if(t.category.name === catName){
+				console.log(t);
 				$('.test-form').formRenderer({
 		    	 	result:t,
 		    	 	options:{}
 		    	 });
-				break;
+				return;
 			}
 		}
 
 	}
 
 	function onTemplates(){
-		console.log(templates);
 
 		var options = [];
 
 		for (var i = 0; i < templates.length; i++) {
 			var t = templates[i];
 
-			options.push('<option value="' + t.category.sorting + '">' + t.category.title + '</option>');
+			options.push('<option value="' + t.category.name + '">' + t.category.title + '</option>');
 
 		}
-
-
-
 
 		$('.category-selector')
 			.html(options.join(''))
