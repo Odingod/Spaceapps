@@ -122,14 +122,10 @@ $.fn.formRenderer = function(conf){
 		observation = conf.result.observation,
 		fieldData   = (observation.field && observation.field.length) ?
 			observation.field : [];
-			
-		observation = conf.result.observation,
-		fieldData   = (observation.field && observation.field.length) ?
-			observation.field : [];	
 
 	var renderedFields = ['<fieldset>'];
 
-
+	console.log(conf.result.category);
 	for (var i = 0; i < fieldData.length; i++) {
 		var datum = fieldData[i];
 
@@ -144,7 +140,9 @@ $.fn.formRenderer = function(conf){
 		
 	}
 
-	renderedFields.push('<input type="button" id="nappula" value="Lähetä" onclick="myFunction()"></fieldset>')
+	renderedFields.push('<input type="button" id="nappula" value="Lähetä" onclick="myFunction()">')
+	renderedFields.push('<input type="button" id="nappula2" value="Kuva" onclick="sendImage()"></fieldset>')
+
 	console.log($e);
 
 	$e.html(renderedFields.join(''));
@@ -153,7 +151,7 @@ $.fn.formRenderer = function(conf){
 {
 	console.log('paap');
 	var request = {};
-	request.action="ObservationRequest";
+	request.action="ObservationAddRequest";
     var observation = [];
     var a = $(":input").serializeArray();
 	console.log(this);
@@ -163,9 +161,20 @@ $.fn.formRenderer = function(conf){
 		var item2 = {}
 		item2.field_id = this.name || '';
 		item2.field_value = this.value || '';
-		item["field"]=item2,
-		observation.push(item)
+		item["field"]=item2;
+		observation.push(item);
     });
+	
+	var item = {}
+	var item2 = {}
+	var item3 = {}
+	item2.field_id = "category_id";
+	item2.field_value = "revontuli";
+	item["field"]=item2;
+	item3.category = item;
+	
+	observation.push(item3);
+	
     request.observation = observation;
 	request.source = "SpaceApps2014";
 	var o = {};

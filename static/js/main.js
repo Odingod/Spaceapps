@@ -12,6 +12,7 @@ $(document).ready(function(){
 	    		result:result,
 	    		options:{}
 	    	});
+			console.log(JSON.stringify(result));
 	    },
 	    error: function (jqXHR, tranStatus, errorThrown) {
 	        console.log({
