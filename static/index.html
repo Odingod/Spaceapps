@@ -107,6 +107,12 @@
 	    contentType: 'application/json',
 	    success: function (result) {
 	    	console.log(JSON.stringify(result));
+			if (result.response_type == "Error"){
+				alert(result.error[0].response_message);
+			} else {
+				alert("Kuva lähetetty");
+			}
+			
 	    },
 	    error: function (jqXHR, tranStatus, errorThrown) {
 	        console.log({
@@ -124,9 +130,8 @@
 		var img = document.getElementById('img1');
 		console.log(img.name);
 		context.drawImage(img, 0, 0 );
-		//var myData = context.getImageData(0, 0, img.width, img.height);
-		var dataURL = canvas.toDataURL("image/jpg");
-		dataURL = img.src;
+
+		var dataURL = img.src;
 		return  dataURL.replace(/^data:image\/(png|jpeg);base64,/ , "");
 		
 	
