@@ -141,7 +141,7 @@ $.fn.formRenderer = function(conf){
 	}
 
 	renderedFields.push('<input type="button" id="nappula" value="Lähetä" onclick="myFunction()">')
-	renderedFields.push('<input type="button" id="nappula2" value="Kuva" onclick="sendImage()"></fieldset>')
+	renderedFields.push('<input type="button" id="nappula2" value="Kuva" onclick="getImageBase64()"></fieldset>')
 
 	console.log($e);
 

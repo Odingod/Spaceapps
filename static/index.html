@@ -69,9 +69,9 @@
 		request.action="ObservationAddImageRequest";
 		var image = {};
 		image.encoding="Base64";
-		image.image_data=imgData;
-		image.image_name="jotain";
-		image.mimetype="image/jpeg";
+		image.image_data=getImageBase64();
+		image.image_name=document.getElementById('img1').name;
+		image.mimetype="image/jpg";
 		image.observation_id=res.response.observation_id;
 		image.observation_modification_key=res.response.observation_modification_key;
 		request.image=image;
@@ -96,15 +96,16 @@
 		
     }
 	
-	function sendImage(){
+	function getImageBase64(){
 		var canvas = document.createElement('canvas');
 		var context = canvas.getContext('2d');
 		var img = document.getElementById('img1');
+		console.log(img.name);
 		context.drawImage(img, 0, 0 );
 		var myData = context.getImageData(0, 0, img.width, img.height);
-		console.log(myData.data);
 		var dataURL = canvas.toDataURL("image/jpg");
-		console.log(  dataURL.replace(/^data:image\/(png|jpg);base64,/ , ""));
+		return  dataURL.replace(/^data:image\/(png|jpg);base64,/ , "");
+		
 	
 	
 	}
