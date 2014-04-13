@@ -182,7 +182,7 @@ $.fn.formRenderer = function(conf){
 				'<input type="button" class="btn btn-default btn-block" id="nappula" value="Lähetä" onclick="myFunction()">',
 			'</div>',
 			'<div class="col-xs-6">',
-				'<input type="button" class="btn btn-default btn-block" id="nappula2" value="Kuva" onclick="getImageBase64()">',
+				'<input type="button" class="btn btn-default btn-block" id="nappula2" value="Reset" onclick="getImageBase64()">',
 			'<div>',
 		'</div>',
 		'</fieldset>'
