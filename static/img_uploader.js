@@ -9,6 +9,7 @@
 				img.attr('id', 'img1');
 				img.attr('name', file.name);
 				console.log(file.name);
+				console.log(e.target.result);
 			}
 			reader.readAsDataURL(file);
 		})
