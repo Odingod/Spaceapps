@@ -82,7 +82,7 @@ CheckBoxField.prototype = new Field();
 CheckBoxField.prototype.render = function(){
 	var d = this.fieldData;
 	return [
-		'<div class="form-group"><label for="' + d['field_id'] + '" class="col-lg-2 control-label">' + d['field_label']+ '</label><div class="col-lg-10"><input type="checkbox" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div></div><br>'
+		'<div class="form-group"><label for="' + d['field_id'] + '" class="col-lg-2 control-label">' + d['field_label']+ '</label><div class="col-lg-10"><input type="checkbox" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div></div>'
 	].join('');
 };
 
@@ -127,7 +127,7 @@ $.fn.formRenderer = function(conf){
 		fieldData   = (observation.field && observation.field.length) ?
 			observation.field : [];	
 
-	var renderedFields = [];
+	var renderedFields = ['<fieldset>'];
 
 
 	for (var i = 0; i < fieldData.length; i++) {
@@ -144,7 +144,7 @@ $.fn.formRenderer = function(conf){
 		
 	}
 
-	renderedFields.push('<input type="button" id="nappula" value="Lähetä" onclick="myFunction()">')
+	renderedFields.push('<input type="button" id="nappula" value="Lähetä" onclick="myFunction()"></fieldset>')
 	console.log($e);
 
 	$e.html(renderedFields.join(''));
