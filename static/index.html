@@ -69,10 +69,14 @@
 	    	console.log(JSON.stringify(result));
 			console.log(result.response_type);
 			if (result.response_type == "Error"){
-				alert(result.error[0].response_message);
-			} else {
+				var alrt = result.error[0] || result.error;
+				alert(alrt.response_message);
+			} else if (document.getElementById('img1') !== null){
 				myFunction2(result);
+			} else {
+				alert("Ei ole kuvaa!");
 			}
+				
 	    },
 	    error: function (jqXHR, tranStatus, errorThrown) {
 	        console.log({
@@ -113,7 +117,8 @@
 	    success: function (result) {
 	    	console.log(JSON.stringify(result));
 			if (result.response_type == "Error"){
-				alert(result.error[0].response_message);
+				var alrt = result.error[0] || result.error;
+				alert(alrt.response_message);
 			} else {
 				alert("Kuva lähetetty");
 			}
