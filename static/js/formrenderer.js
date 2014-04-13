@@ -147,11 +147,8 @@ $.fn.formRenderer = function(conf){
 
 	fieldData = fieldData.concat(specData);
 
-	console.log(conf.result);
-
 	var renderedFields = ['<fieldset>'];
 
-	console.log(conf.result.category);
 	for (var i = 0; i < fieldData.length; i++) {
 		var datum = fieldData[i];
 
@@ -159,8 +156,6 @@ $.fn.formRenderer = function(conf){
 			constructorMapper[datum['field_type']] : Field;
 
 		var field = new Constructor(datum);
-
-		console.log(field.isHidden());
 
 		var render = (field.isHidden()) ? [
 			'<div class="hidden-field">',
