@@ -3,26 +3,30 @@
     <head>
         <meta charset="utf-8" />
         <title>Demo</title>
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<!-- Custom styles for this template -->
-			<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
-			
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+		<link href="css/style.css" rel="stylesheet">
 	</head>
     <body>
-	
-		<div class="row">
-		<div class="col-lg-6">
-		<div class="well bs-component">
-		<form method="GET" enctype="multipart/form-data" class="Image-form">
-			<input name='file' type="file" accept="image/*" /> <br><!-- cute but only works in some browsers-->
-			<img width='300'><br>	
-		</form>
+	   <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3 col-xs-12">
+                    <div class="well bs-component">
+                    <form method="GET" enctype="multipart/form-data" class="Image-form">
+                        <input name='file' type="file" accept="image/*" /> <br><!-- cute but only works in some browsers-->
+                        <img width='300'><br>   
+                    </form>
+                    
+                    <form method="GET" action="" class="test-form form-horizontal" enctype="multipart/form-data"></form>
+                    
+                    </div>
+                </div>
+            </div>
+       </div>
 		
-		<form method="GET" action="" class="test-form" enctype="multipart/form-data"></form>
-		
-		</div></div></div>
 		
 		<script src="jquery-2.1.0.js"></script>
         <script src="js/formrenderer.js"></script>
