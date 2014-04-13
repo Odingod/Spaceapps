@@ -143,6 +143,7 @@ $.fn.formRenderer = function(conf){
 	}
 
 	renderedFields.push('<input type="button" id="nappula" value="Lähetä" onclick="myFunction()">')
+	renderedFields.push('<input type="button" id="nappula2" value="Kuva" onclick="sendImage()">')
 	console.log($e);
 
 	$e.html(renderedFields.join(''));

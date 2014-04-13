@@ -85,6 +85,19 @@
 	});
 		
     }
+	
+	function sendImage(){
+		var canvas = document.createElement('canvas');
+		var context = canvas.getContext('2d');
+		var img = document.getElementById('img1');
+		context.drawImage(img, 0, 0 );
+		var myData = context.getImageData(0, 0, img.width, img.height);
+		console.log(myData.data);
+		var dataURL = canvas.toDataURL("image/jpg");
+		console.log(  dataURL.replace(/^data:image\/(png|jpg);base64,/ , ""));
+	
+	
+	}
 		</script>	
     </body>
 </html>
