@@ -17,15 +17,20 @@
                     <div class="well bs-component">
                     <form class="form-horizontal">
                         <p class="category-loader">Loading categories...</p>
-                        <select class="category-selector"></select>
+                        <div class="form-group"><label for="category-select" class="col-lg-2 control-label"> Mitä näit? </label><div class="col-lg-10">
+						<select class="category-selector"></select>
+						</div></div>
                     </form>
-                    <form method="GET" enctype="multipart/form-data" class="Image-form">
-                        <input name='file' type="file" accept="image/*" /> <br><!-- cute but only works in some browsers-->
+                    <div class="form-group"><label for="img-upload" class="col-lg-2 control-label">
+					<form method="GET" enctype="multipart/form-data" class="Image-form">
+                        <input name='file' type="file" accept="image/*" /><!-- cute but only works in some browsers-->
                         <img width='300'><br>   
                     </form>
-                    
+					
+					</div>
                     <form method="GET" action="" class="test-form form-horizontal" enctype="multipart/form-data"></form>
                     
+					
                     </div>
                 </div>
             </div>

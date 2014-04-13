@@ -32,15 +32,11 @@ DateField.prototype.render = function(){
 	
 	var tD = new Date();
 	var datestr = tD.getFullYear() + "-" + (tD.getMonth()+ 1) + "-" +  tD.getDate();
-	if(d['field_mandatory'] == "1"){
-		return ['<input id="' + d['field_id'] + '" type="hidden"'].join('');
-		alert(d['field_label']);
-	}
-	else{
+
 	return [
 		'<div class="form-group"><label for="' + d['field_id'] + '" class="col-lg-2 control-label">' + d['field_label']+ '</label><div class="col-lg-10"><input value="' + datestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div></div>'
 	].join('');
-	}
+	
 	
 	
 };
