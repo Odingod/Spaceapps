@@ -95,6 +95,7 @@
 		data = {};
 		data.request = request;
 		console.log(JSON.stringify(data));
+		console.log(res.observation_id);
 		$.ajax({
 	    url: '/api',
 	    type: 'POST',
@@ -119,9 +120,10 @@
 		var img = document.getElementById('img1');
 		console.log(img.name);
 		context.drawImage(img, 0, 0 );
-		var myData = context.getImageData(0, 0, img.width, img.height);
+		//var myData = context.getImageData(0, 0, img.width, img.height);
 		var dataURL = canvas.toDataURL("image/jpg");
-		return  dataURL.replace(/^data:image\/(png|jpg);base64,/ , "");
+		dataURL = img.src;
+		return  dataURL.replace(/^data:image\/(png|jpeg);base64,/ , "");
 		
 	
 	
