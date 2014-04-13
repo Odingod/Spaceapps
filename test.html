@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Demo</title>
+</head>
+<script src="jquery-2.1.0.js"></script>
+<script src="jquery.exif.js"></script>
+<script src="exif.js"></script>
+
+<body style="background-color:red">
+
+<img src="WIN_20140306_102409.JPG" id="img1" exif="true" />
+
+<script>
+$("#img1").click(function() {
+alert("Taken with a " + $(this).exif("Date") + " " + $(this).exif("Model") + " on " + $(this).exif("DateTimeOriginal"));
+// exif(strTagName) returns a string with value for the tag [strTagName]
+});
+</script>
+
+</body>
+</html>

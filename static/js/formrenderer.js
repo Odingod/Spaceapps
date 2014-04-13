@@ -43,7 +43,17 @@ TimeField.prototype.render = function(){
 	var d = this.fieldData;
 	
 	var tD = new Date();
-	var timestr = tD.getHours() + ":" + (tD.getMinutes()+ 1) + ":" +  tD.getSeconds();
+	
+	var hours = tD.getHours();
+	var minutes = tD.getMinutes();
+	var seconds = tD.getSeconds();
+	
+	if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+	
+	
+	var timestr = hours + ":" + minutes + ":" +  seconds;
 	return [
 		'<div class="form-group"><label for="' + d['field_id'] + '" class="col-lg-2 control-label">' + d['field_label']+ '</label><div class="col-lg-10"><input value="' + timestr + '" name=\"' + d['field_id'] + '\" id=\"' + d['field_id'] + '\"/></div></div><br>'
 	].join('');

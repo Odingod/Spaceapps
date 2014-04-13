@@ -28,11 +28,12 @@
 		
         <script src="js/main.js"></script>
 		<script src="img_uploader.js"></script>
-
+		<script src="js/get_observation_location.js"></script>
 		
 		<script>
 		function GetLocation(location) {
-		$("#observation_coordinates").attr('value', "lat=" + location.coords.latitude + ", lon=" + location.coords.longitude);
+			$("#observation_coordinates").attr('value', "lat=" + location.coords.latitude + ", lon=" + location.coords.longitude);
+			$("#observation_location").attr('value', get_observation_location(location));
 		}
 	
 	function myFunction(){
