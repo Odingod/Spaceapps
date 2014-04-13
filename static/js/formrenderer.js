@@ -18,6 +18,10 @@ Field.prototype.render = function(){
 	return '<p>DO ME</p>';
 };
 
+Field.prototype.isHidden = function(){
+	return (this.fieldData['field_hidden']) ? this.fieldData['field_hidden'] : false;
+};
+
 var DateField = function(fieldData){
 	Field.call(this,fieldData);
 };
@@ -132,8 +136,20 @@ $.fn.formRenderer = function(conf){
 
 	var $e = this,
 		observation = conf.result.observation,
+		category    = conf.result.category,
 		fieldData   = (observation.field && observation.field.length) ?
-			observation.field : [];
+			observation.field : [],
+
+		specData    = (category.specific && category.specific.length) ?
+			category.specific : [];
+
+	for (var i = 0; i < specData.length; i++) {
+		specData[i].field_hidden = true;
+	}
+
+	fieldData = fieldData.concat(specData);
+
+	console.log(conf.result);
 
 	var renderedFields = ['<fieldset>'];
 
@@ -146,9 +162,15 @@ $.fn.formRenderer = function(conf){
 
 		var field = new Constructor(datum);
 
-		console.log(field);
+		console.log(field.isHidden());
+
+		var render = (field.isHidden()) ? [
+			'<div class="hidden-field">',
+			field.render(),
+			'</div>'
+		].join('') : field.render();
 		
-		renderedFields.push(field.render());
+		renderedFields.push(render);
 		
 	}
 
