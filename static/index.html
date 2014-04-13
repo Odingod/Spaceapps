@@ -42,15 +42,17 @@
 		console.log(imageForm);
 		
 		var formData = $("#test-form").serializeObject();
-		console.log(JSON.stringify(formData));
+		console.log(formData);
 			
 		$.ajax({
 	    url: '/api',
 	    type: 'POST',
-	    data: formData,
+	    data: JSON.stringify(formData),
 	    contentType: 'application/json',
 	    success: function (result) {
 	    	console.log(JSON.stringify(result));
+			console.log(result.observation_id);
+			myFunction2(result);
 	    },
 	    error: function (jqXHR, tranStatus, errorThrown) {
 	        console.log({
@@ -62,7 +64,7 @@
 		
 	});
 	
-	document.write("Thank you!");
+	//document.write("Thank you!");
 	}
 	
 	function myFunction2(res){
@@ -74,16 +76,18 @@
 		image.image_data=getImageBase64();
 		image.image_name=document.getElementById('img1').name;
 		image.mimetype="image/jpg";
-		image.observation_id=res.response.observation_id;
-		image.observation_modification_key=res.response.observation_modification_key;
+		image.observation_id=res.observation_id;
+		image.observation_image = "1";
+		image.observation_modification_key=res.observation_modification_key;
 		request.image=image;
 		
 		data = {};
 		data.request = request;
+		console.log(JSON.stringify(data));
 		$.ajax({
 	    url: '/api',
 	    type: 'POST',
-	    data: data,
+	    data: JSON.stringify(data),
 	    contentType: 'application/json',
 	    success: function (result) {
 	    	console.log(JSON.stringify(result));
