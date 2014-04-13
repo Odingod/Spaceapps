@@ -150,8 +150,17 @@ $.fn.formRenderer = function(conf){
 		
 	}
 
-	renderedFields.push('<input type="button" id="nappula" value="Lähetä" onclick="myFunction()">')
-	renderedFields.push('<input type="button" id="nappula2" value="Kuva" onclick="getImageBase64()"></fieldset>')
+	renderedFields.push([
+		'<div class="form-group submits">',
+			'<div class="col-xs-6">',
+				'<input type="button" class="btn btn-default btn-block" id="nappula" value="Lähetä" onclick="myFunction()">',
+			'</div>',
+			'<div class="col-xs-6">',
+				'<input type="button" class="btn btn-default btn-block" id="nappula2" value="Kuva" onclick="getImageBase64()">',
+			'<div>',
+		'</div>',
+		'</fieldset>'
+	].join(''));
 
 	console.log($e);
 
