@@ -62,8 +62,12 @@
 	    contentType: 'application/json',
 	    success: function (result) {
 	    	console.log(JSON.stringify(result));
-			console.log(result.observation_id);
-			myFunction2(result);
+			console.log(result.response_type);
+			if (result.response_type == "Error"){
+				alert(result.error[0].response_message);
+			} else {
+				myFunction2(result);
+			}
 	    },
 	    error: function (jqXHR, tranStatus, errorThrown) {
 	        console.log({
