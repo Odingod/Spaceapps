@@ -19,6 +19,7 @@ Field.prototype.render = function(){
 };
 
 Field.prototype.isHidden = function(){
+	if(this.mandatory) return false;
 	return (this.fieldData['field_hidden']) ? this.fieldData['field_hidden'] : false;
 };
 
@@ -145,6 +146,7 @@ $.fn.formRenderer = function(conf){
     $e.attr('data-category',category['name']);
 
 	for (var i = 0; i < specData.length; i++) {
+
 		specData[i].field_hidden = true;
 	}
 
@@ -218,7 +220,7 @@ $.fn.serializeObject = function() {
 	request.source = "SpaceApps2014";
 	var o = {};
 	o.request =request;
-	console.log(JSON.stringify(o));
+	console.log(o);
 	
 	return o;
 };
