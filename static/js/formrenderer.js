@@ -130,8 +130,16 @@ $.fn.formRenderer = function(conf){
 
 	var $e = this,
 		observation = conf.result.observation,
+		category    = conf.result.category,
 		fieldData   = (observation.field && observation.field.length) ?
-			observation.field : [];
+			observation.field : [],
+
+		specData    = (category.specific && category.specific.length) ?
+			category.specific : [];
+
+	fieldData = fieldData.concat(specData);
+
+	console.log(conf.result);
 
 	var renderedFields = ['<fieldset>'];
 
