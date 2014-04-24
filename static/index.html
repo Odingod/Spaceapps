@@ -15,136 +15,40 @@
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3 col-xs-12">
                     <div class="well bs-component">
-                    <form class="form-horizontal">
+                    
+					<!-- Lomake, jolla valitaan ilmiön tyyppi -->
+					<form class="form-horizontal">
                         <p class="category-loader">Loading categories...</p>
                         <div class="form-group"><label for="category-select" class="col-lg-2 control-label"> Mitä näit? </label><div class="col-lg-10">
 						<select class="category-selector"></select>
 						</div></div>
                     </form>
                     <div class="form-group"><label for="img-upload" class="col-lg-2 control-label">
+					
+					<!-- form_renderer.js lisää tähän lomakkeeseen saadun JSON:n mukaiset kentät. -->
 					<form method="GET" enctype="multipart/form-data" class="Image-form">
                         <input name='file' type="file" accept="image/*" /><!-- cute but only works in some browsers-->
                         <img width='300'><br>   
                     </form>
 					
 					</div>
+					
+					<!-- Tällä lomakkeella lähetetään kuva. -->
                     <form method="GET" action="" class="test-form form-horizontal" enctype="multipart/form-data"></form>
-                    
 					
                     </div>
                 </div>
             </div>
        </div>
 		
-		<script src="jquery-2.1.0.js"></script>
-        <script src="js/formrenderer.js"></script>
-		
+		<script src="js/jquery-2.1.0.js"></script>
+        <script src="js/form_renderer.js"></script>
         <script src="js/main.js"></script>
-		<script src="img_uploader.js"></script>
+		<script src="js/img_uploader.js"></script>
 		<script src="js/get_observation_location.js"></script>
-				
-		<script>
-			function GetLocation(location) {
-				$("#observation_coordinates").attr('value', "lat=" + location.coords.latitude + ", lon=" + location.coords.longitude);
-				get_observation_location(location);
-			}
-			
-			function myFunction(){
-				console.log('piip');
-				var imageForm = $("#img1");
-				console.log(imageForm);
-				
-				var formData = $(".test-form").serializeObject();
-				console.log(formData);
-					
-				$.ajax({
-			    url: '/api',
-			    type: 'POST',
-			    data: JSON.stringify(formData),
-			    contentType: 'application/json',
-			    success: function (result) {
-			    	console.log(JSON.stringify(result));
-					console.log(result.response_type);
-					if (result.response_type == "Error"){
-						var alrt = result.error[0] || result.error;
-						alert(alrt.response_message);
-					} else if (document.getElementById('img1') !== null){
-						myFunction2(result);
-					} else {
-						alert("Ei ole kuvaa!");
-					}
-						
-			    },
-			    error: function (jqXHR, tranStatus, errorThrown) {
-			        console.log({
-			            'Status' :jqXHR.status + ' ' + jqXHR.statusText,
-			            'Response': jqXHR.responseText
-			        });
-			    }
-				
-				
-			});
-			
-			//document.write("Thank you!");
-			}
-			
-			function myFunction2(res){
-				var imgData = 0;
-				var request = {};
-				request.action="ObservationAddImageRequest";
-				var image = {};
-				image.encoding="Base64";
-				image.image_data=getImageBase64();
-				image.image_name=document.getElementById('img1').name;
-				image.mimetype="image/jpg";
-				image.observation_id=res.observation_id;
-				image.observation_image = "1";
-				image.observation_modification_key=res.observation_modification_key;
-				request.image=image;
-				
-				data = {};
-				data.request = request;
-				console.log(JSON.stringify(data));
-				console.log(res.observation_id);
-				$.ajax({
-			    url: '/api',
-			    type: 'POST',
-			    data: JSON.stringify(data),
-			    contentType: 'application/json',
-			    success: function (result) {
-			    	console.log(JSON.stringify(result));
-					if (result.response_type == "Error"){
-						var alrt = result.error[0] || result.error;
-						alert(alrt.response_message);
-					} else {
-						alert("Kuva lähetetty");
-					}
-					
-			    },
-			    error: function (jqXHR, tranStatus, errorThrown) {
-			        console.log({
-			            'Status' :jqXHR.status + ' ' + jqXHR.statusText,
-			            'Response': jqXHR.responseText
-			        });
-			    }
-			});
-				
-		    }
-			
-			function getImageBase64(){
-				var canvas = document.createElement('canvas');
-				var context = canvas.getContext('2d');
-				var img = document.getElementById('img1');
-				console.log(img.name);
-				context.drawImage(img, 0, 0 );
-
-				var dataURL = img.src;
-				return  dataURL.replace(/^data:image\/(png|jpeg);base64,/ , "");
-				
-			
-			
-			}
-		</script>
+		<script src="js/form_sender.js"></script>
+		
+		<!-- Ajetaan Google Analytics-->
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -153,7 +57,7 @@
 
 		  ga('create', 'UA-50001094-1', 'lepponen.fi');
 		  ga('send', 'pageview');
-
 		</script>
+		
     </body>
 </html>

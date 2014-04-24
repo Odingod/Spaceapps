@@ -1,4 +1,11 @@
-function get_observation_location(location) {
+// Adds the coordinates of the location to the value of the coordinate field
+function GetLocation(location) {
+				$("#observation_coordinates").attr('value', "lat=" + location.coords.latitude + ", lon=" + location.coords.longitude);
+				insert_city_name(location);
+			}
+
+// Determines the city name and adds it to the value of the form
+function insert_city_name(location) {
 	var geocoder = new google.maps.Geocoder();
   var latlng = new google.maps.LatLng(location.coords.latitude,location.coords.longitude);
   geocoder.geocode({'latLng': latlng}, function(results, status) {
@@ -28,5 +35,3 @@ function get_observation_location(location) {
  } );
 
 };
-
-//google.maps.event.addDomListener(window, 'load', initialize);
